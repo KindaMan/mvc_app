@@ -40,7 +40,7 @@ class View {
 		ob_start();
 		include($this->path);
 		$content = ob_get_clean();
-		
+
 		return $content;
 	}
 }
