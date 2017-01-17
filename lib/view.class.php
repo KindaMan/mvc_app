@@ -32,4 +32,15 @@ class View {
 		$this->path = $path;
 		$this->data = $data;
 	}
+
+	public function render()
+	{
+		$data = $this->data;
+
+		ob_start();
+		include($this->path);
+		$content = ob_get_clean();
+		
+		return $content;
+	}
 }
