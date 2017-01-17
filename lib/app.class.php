@@ -12,6 +12,8 @@ class App {
 	public static function run($uri)
 	{
 		self::$router = new Router($uri);
+		
+		Lang::load(self::$router->getLanguage());
 
 		$controller_class  = ucfirst(self::$router->getController()).'Controller';
 		$controller_method = strtolower(self::$router->getMethodPrefix().self::$router->getAction());
@@ -30,7 +32,7 @@ class App {
 
 		$layout = self::$router->getRoute();
 		$layout_path = VIEWS_PATH.DS.$layout.'.html';
-		print $layout_path;
+		
 		$layout_view_object = new View(compact('content'), $layout_path);
 
 		echo $layout_view_object->render();
